@@ -52,7 +52,7 @@ export class AdversaryComponent implements OnInit {
     }
 
     if (this.encounterElement) {
-      this.trackers = Array(this.encounterElement.size).fill(new HpTracker());
+      this.trackers = Array(this.encounterElement.size).fill(1).map(() => { return new HpTracker() });
     } else {
       //1 seul
       this.trackers.push(new HpTracker());

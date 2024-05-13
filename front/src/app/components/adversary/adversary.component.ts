@@ -16,12 +16,14 @@ import { TagModule } from 'primeng/tag';
 import { DividerModule } from 'primeng/divider';
 import { ScrollPanelModule } from 'primeng/scrollpanel';
 import { RatingModule } from 'primeng/rating';
+import { GaugeComponent } from '../utils/gauge/gauge.component';
 @Component({
   selector: 'dh-adversary',
   standalone: true,
   imports: [
     CardModule, ButtonModule, RippleModule, RatingModule, FormsModule,
-    FieldsetModule, PanelModule, TagModule, DividerModule, ScrollPanelModule
+    FieldsetModule, PanelModule, TagModule, DividerModule, ScrollPanelModule,
+    GaugeComponent
   ],
   providers: [MessageService],
   templateUrl: './adversary.component.html',

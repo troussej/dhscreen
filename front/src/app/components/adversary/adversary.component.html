@@ -2,8 +2,14 @@
 <p-scrollPanel [style]="{ width: '100%', height: '600px' }">
 
 
-    <p-card [header]="header" [subheader]="element.type">
+    <p-card [subheader]="element.type">
 
+        <ng-template pTemplate="header">
+            <p class="p-card-body p-card-title title">
+                <p-tag class="tier">{{element.tier}}</p-tag>
+                {{element.name}}
+            </p>
+        </ng-template>
         <p>
             {{element.shortDescription}}
         </p>
@@ -65,8 +71,9 @@
 
         <p-fieldset legend="HP & Stress">
             @for (tracker of trackers; track $index) {
-            HP : <p-rating [(ngModel)]="trackers[$index].hp" [stars]="element.hitPoints"></p-rating><br />
-            Stress : <p-rating [(ngModel)]="trackers[$index].stress" [stars]="element.stress"></p-rating><br />
+            <h4>{{element.name}} #{{$index+1}}</h4>
+            HP : <dh-gage [max]="element.hitPoints" [(model)]="trackers[$index].hp" /><br />
+            Stress : <dh-gage [max]="element.stress" [(model)]="trackers[$index].stress" /><br />
             <p-divider />
             }
         </p-fieldset>

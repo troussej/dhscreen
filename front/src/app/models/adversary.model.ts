@@ -34,8 +34,12 @@ export interface Feature {
     description: string
     flavourText: string
     cost?: Cost
+    uses?: number
+    value?: number
 }
 
 export interface Cost {
-    stress: number
+    stress?: number,
+    fear?: number,
+    actions?: number
 }

@@ -20,3 +20,8 @@ export class EncounterElem {
 
 
 }
+
+export class HpTracker {
+    hp = 0;
+    stress = 0;
+}

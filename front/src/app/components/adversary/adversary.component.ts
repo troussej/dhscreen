@@ -1,26 +1,27 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { ActivatedRoute, Route } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { Adversary } from '../../models/adversary.model';
-import { AdversaryService } from 'app/services/adversary.service';
 import _ from 'lodash';
-import { Observable, map, of } from 'rxjs';
-
+import { map } from 'rxjs';
+import { FormsModule } from '@angular/forms';
 import { CardModule } from 'primeng/card';
 import { ButtonModule } from 'primeng/button';
-import { EncounterService } from 'app/services/encounter.service';
-import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
 import { RippleModule } from 'primeng/ripple';
 import { FieldsetModule } from 'primeng/fieldset';
 import { PanelModule } from 'primeng/panel';
-import { EncounterElem } from 'app/models/encounter.model';
-
+import { EncounterElem, HpTracker } from 'app/models/encounter.model';
+import { BadgeModule } from 'primeng/badge';
+import { TagModule } from 'primeng/tag';
+import { DividerModule } from 'primeng/divider';
+import { ScrollPanelModule } from 'primeng/scrollpanel';
+import { RatingModule } from 'primeng/rating';
 @Component({
   selector: 'dh-adversary',
   standalone: true,
   imports: [
-    CardModule, ButtonModule, RippleModule,
-    FieldsetModule, PanelModule
+    CardModule, ButtonModule, RippleModule, RatingModule, FormsModule,
+    FieldsetModule, PanelModule, TagModule, DividerModule, ScrollPanelModule
   ],
   providers: [MessageService],
   templateUrl: './adversary.component.html',
@@ -36,6 +37,8 @@ export class AdversaryComponent implements OnInit {
   @Input()
   encounterElement: EncounterElem | null = null;
 
+  trackers: HpTracker[] = [];
+
   constructor(private route: ActivatedRoute) {
 
   }
@@ -48,6 +51,12 @@ export class AdversaryComponent implements OnInit {
       })
     }
 
+    if (this.encounterElement) {
+      this.trackers = Array(this.encounterElement.size).fill(new HpTracker());
+    } else {
+      //1 seul
+      this.trackers.push(new HpTracker());
+    }
   }
 
 

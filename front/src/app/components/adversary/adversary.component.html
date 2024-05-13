@@ -1,21 +1,78 @@
 @if (element) {
-<p-card [header]="header" [subheader]="element.type">
+<p-scrollPanel [style]="{ width: '100%', height: '600px' }">
 
 
-    <p-fieldset legend="">
+    <p-card [header]="header" [subheader]="element.type">
+
         <p>
             {{element.shortDescription}}
         </p>
-    </p-fieldset>
 
-    <p-panel>
-        <p>
-            {{element.shortDescription}}
-        </p>
-    </p-panel>
+        <p-fieldset>
 
-    <ng-template pTemplate="footer">
+            <p>
+                <b>{{element.weapon.name}}:</b> {{element.weapon.range}} - {{element.weapon.damage}}<br />
+                <b>Attack modifier</b> <p-tag value="{{element.attackModifier}}" /><br />
+                <span>
+                    <b>Difficulty</b> <p-tag value="{{element.difficulty}}" />
+                </span>
+            </p>
 
-    </ng-template>
-</p-card>
+            <p><b>Motives & Tactics</b><br />
+                @for (mat of element.motivesAndTactics; track $index) {
+                {{mat}},
+                }
+            </p>
+
+        </p-fieldset>
+
+        <p-fieldset legend="Features">
+            @for (feat of element.features; track $index) {
+            <p>
+                <span>
+                    <b>
+                        {{feat.name}}
+                        @if(feat.value){
+                        ({{feat.value}})
+                        }
+                    </b>
+                    - {{feat.type}}
+                </span>
+                <br />
+                @if (feat.cost && feat.cost.stress ) {
+                Stress cost : {{feat.cost.stress}} <br />
+                }
+                @if (feat.cost && feat.cost.fear ) {
+                Fear : {{feat.cost.fear}}<br />
+                }
+                @if (feat.cost && feat.cost.actions ) {
+                Actions : {{feat.cost.actions}}<br />
+                }
+                @if (feat.uses ) {
+                Uses : {{feat.uses}}<br />
+                }
+
+
+            </p>
+            <p>
+
+                {{feat.description}}
+            </p>
+            <p-divider />
+            }
+
+        </p-fieldset>
+
+        <p-fieldset legend="HP & Stress">
+            @for (tracker of trackers; track $index) {
+            <p-rating [(ngModel)]="trackers[$index].hp" [cancel]="false" [stars]="element.hitPoints" />
+            }
+            <p-divider />
+        </p-fieldset>
+
+        <ng-template pTemplate="footer">
+
+        </ng-template>
+    </p-card>
+</p-scrollPanel>
 }

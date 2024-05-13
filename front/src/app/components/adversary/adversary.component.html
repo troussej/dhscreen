@@ -65,9 +65,9 @@
 
         <p-fieldset legend="HP & Stress">
             @for (tracker of trackers; track $index) {
-            <p-rating [(ngModel)]="trackers[$index].hp" [cancel]="false" [stars]="element.hitPoints" />
-            }
+            {{$index}}<p-rating [(ngModel)]="trackers[$index].hp" [stars]="element.hitPoints"></p-rating><br />
             <p-divider />
+            }
         </p-fieldset>
 
         <ng-template pTemplate="footer">

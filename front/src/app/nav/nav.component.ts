@@ -6,18 +6,32 @@ import { MenubarModule } from 'primeng/menubar';
 @Component({
   selector: 'dh-nav',
   standalone: true,
-  imports: [ButtonModule,MenubarModule],
+  imports: [ButtonModule, MenubarModule],
   templateUrl: './nav.component.html',
   styleUrl: './nav.component.scss'
 })
 export class NavComponent {
-items: MenuItem[] = [{
-  label: 'Home',
-  routerLink:'home'
-},
-{
-  label:'tracker',
-  routerLink:'tracker'
-}];
+  items: MenuItem[] = [
+    {
+      label: 'Home',
+      routerLink: 'home'
+    },
+    {
+      label: 'tracker',
+      routerLink: 'tracker'
+    },
+    {
+      label: 'encounter',
+      routerLink: 'encounter'
+    },
+    {
+      label: 'Bladed Guards',
+      routerLink: 'adversary/Bladed Guards'
+    },
+    {
+      label: 'Bear',
+      routerLink: 'adversary/Bear'
+    }
+  ];
 
 }

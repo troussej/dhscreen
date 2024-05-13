@@ -1,7 +1,9 @@
 <ul>
-        @for (item of items; track $index) {
-        <li>
+    @for (item of adversaryService.getAll(); track $index) {
+    <li>
+        <a routerLink="/adversary/{{item.name}}">
             {{item.name}}
-        </li>
+        </a>
+    </li>
     }
 </ul>

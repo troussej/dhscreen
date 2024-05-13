@@ -1,0 +1,10 @@
+<ul>
+    @for (item of service.get().adversairies; track $index) {
+    <li>
+        <a routerLink="/adversary/{{item.name}}">
+            {{item.name}}
+        </a>
+        <p-button (onClick)="remove($index)">Delete</p-button>
+    </li>
+    }
+</ul>

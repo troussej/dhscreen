@@ -1,0 +1,21 @@
+@if (element) {
+<p-card [header]="header" [subheader]="element.type">
+
+
+    <p-fieldset legend="">
+        <p>
+            {{element.shortDescription}}
+        </p>
+    </p-fieldset>
+
+    <p-panel>
+        <p>
+            {{element.shortDescription}}
+        </p>
+    </p-panel>
+
+    <ng-template pTemplate="footer">
+
+    </ng-template>
+</p-card>
+}

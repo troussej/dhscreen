@@ -1,12 +1,13 @@
 import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { AdversaryService } from 'app/services/adversary.service';
-import { Adversary } from 'app/adversary/adversary.model';
+import { Adversary } from 'app/models/adversary.model';
+import { AddToEncounterComponent } from '../add-to-encounter/add-to-encounter.component';
 
 @Component({
   selector: 'dh-home',
   standalone: true,
-  imports: [RouterLink],
+  imports: [RouterLink, AddToEncounterComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })

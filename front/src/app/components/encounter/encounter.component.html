@@ -1,0 +1,7 @@
+<p-carousel [value]="elements" [numVisible]="3" [numScroll]="3">
+    <ng-template let-item pTemplate="item">
+        <dh-adversary [element]="item.adversary" [encounterElement]="item"></dh-adversary>
+        <p-button severity="danger" size="small" (onClick)="remove(item.id)">Remove</p-button>
+    </ng-template>
+
+</p-carousel>

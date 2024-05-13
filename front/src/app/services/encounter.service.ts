@@ -1,36 +1,47 @@
 import { Injectable, OnInit } from '@angular/core';
-import { Adversary } from 'app/adversary/adversary.model';
-import { Encounter } from 'app/encounter/encounter.model';
+import { Adversary } from 'app/models/adversary.model';
+import { Encounter, EncounterElem } from 'app/models/encounter.model';
 
 import _ from 'lodash';
-import { StorageService } from './storage.service';
 
-const CURRENT_ENCOUNTER = "currentEncounter";
+import { LocalStorage } from 'ngx-webstorage';
+
 @Injectable({ providedIn: 'root' })
 export class EncounterService {
 
-    encounter: Encounter = new Encounter();
+    @LocalStorage('dh-encounter', new Encounter())
+    encounter!: Encounter;
 
-    constructor(private storageService: StorageService) {
-        this.init();
+    public add(adversary: Adversary, scaling = 0): void {
+        const id = this.getId(adversary, scaling);
+
+        let encounterElem = this.encounter.elements[id];
+        if (_.isNil(encounterElem)) {
+            encounterElem = new EncounterElem(adversary, id);
+            this.encounter.elements[id] = encounterElem;
+        }
+
+        encounterElem.size++;
+        this.encounter = this.encounter;
     }
 
-    init(): void {
-        this.encounter = this.storageService.load("currentEncounter");
+    private getId(adversary: Adversary, scaling: number) {
+        return `${adversary.name}-${scaling}`;
     }
 
-    public add(adversary: Adversary): void {
-        this.encounter.adversairies.push(adversary);
-        this.storageService.save(CURRENT_ENCOUNTER, this.encounter)
+    remove(id: string) {
+        let encounterElem = this.encounter.elements[id];
+        if (encounterElem) {
+            encounterElem.size--;
+            if (encounterElem.size === 0) {
+                delete this.encounter.elements[id];
+            }
+        }
+        this.encounter = this.encounter;
     }
 
-    remove(index: number) {
-        this.encounter.adversairies.splice(index, 1);
-        this.storageService.save(CURRENT_ENCOUNTER, this.encounter)
-    }
 
-
-    public get(): Encounter {
+    public getCurrent(): Encounter {
         return this.encounter;
     }
 }

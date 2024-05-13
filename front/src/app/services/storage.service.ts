@@ -11,11 +11,15 @@ export class StorageService {
     }
 
     save<T>(key: string, data: T): void {
-        this.storage.store(key, JSON.stringify(data));
+        this.storage.store(key, data);
 
     }
 
-    load<T>(key: string): T {
-        return JSON.parse(this.storage.retrieve(key) || "{}") as T
+    load<T>(key: string): T | null {
+        const val = this.storage.retrieve(key);
+        if (_.isNil(val)) {
+            return null;
+        }
+        return val as T;
     }
 }

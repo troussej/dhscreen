@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Route } from '@angular/router';
-import { Adversary } from './adversary.model';
+import { Adversary } from '../../models/adversary.model';
 import { AdversaryService } from 'app/services/adversary.service';
 import _ from 'lodash';
 import { Observable, map, of } from 'rxjs';
@@ -11,10 +11,17 @@ import { EncounterService } from 'app/services/encounter.service';
 import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
 import { RippleModule } from 'primeng/ripple';
+import { FieldsetModule } from 'primeng/fieldset';
+import { PanelModule } from 'primeng/panel';
+import { EncounterElem } from 'app/models/encounter.model';
+
 @Component({
   selector: 'dh-adversary',
   standalone: true,
-  imports: [CardModule, ButtonModule, ToastModule, RippleModule],
+  imports: [
+    CardModule, ButtonModule, RippleModule,
+    FieldsetModule, PanelModule
+  ],
   providers: [MessageService],
   templateUrl: './adversary.component.html',
   styleUrl: './adversary.component.scss'
@@ -26,24 +33,28 @@ export class AdversaryComponent implements OnInit {
   @Input()
   element: Adversary | null = null;
 
-  constructor(private route: ActivatedRoute,
-    private adversaryService: AdversaryService,
-    private encounterService: EncounterService,
-    private messageService: MessageService) {
+  @Input()
+  encounterElement: EncounterElem | null = null;
+
+  constructor(private route: ActivatedRoute) {
 
   }
 
   ngOnInit(): void {
 
-    this.route.data.pipe(map(({ element }) => element)).subscribe(el => {
-      this.element = el;
-    })
+    if (this.element === null) {
+      this.route.data.pipe(map(({ element }) => element)).subscribe(el => {
+        this.element = el;
+      })
+    }
 
   }
 
-  public add(): void {
-    console.log("add")
-    this.encounterService.add(this.element!);
-    this.messageService.add({ summary: "Added" })
+
+  get header(): string {
+    if (this.encounterElement === null) {
+      return this.element?.name || '';
+    }
+    return `${this.element?.name || ''} (${this.encounterElement.size})`
   }
 }

@@ -4,7 +4,7 @@ import { inject } from '@angular/core';
 
 import { Observable, filter, of, take, throwError } from 'rxjs';
 import { AdversaryService } from 'app/services/adversary.service';
-import { Adversary } from './adversary.model';
+import { Adversary } from '../../models/adversary.model';
 import _ from 'lodash';
 
 export const AdversaryResolver: ResolveFn<Adversary> = (

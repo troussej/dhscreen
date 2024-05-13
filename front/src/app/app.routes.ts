@@ -1,9 +1,9 @@
 import { Routes } from '@angular/router';
-import { TrackerComponent } from './tracker/tracker.component';
-import { HomeComponent } from './home/home.component';
-import { AdversaryComponent } from './adversary/adversary.component';
-import { AdversaryResolver } from './adversary/adversary.resolver';
-import { EncounterComponent } from './encounter/encounter.component';
+import { TrackerComponent } from './components/tracker/tracker.component';
+import { HomeComponent } from './components/home/home.component';
+import { AdversaryComponent } from './components/adversary/adversary.component';
+import { AdversaryResolver } from './components/adversary/adversary.resolver';
+import { EncounterComponent } from './components/encounter/encounter.component';
 
 export const routes: Routes = [
     {
@@ -25,3 +25,4 @@ export const routes: Routes = [
         component: EncounterComponent
     }
 ];
+

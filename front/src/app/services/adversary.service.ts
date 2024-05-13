@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Adversary } from 'app/adversary/adversary.model';
+import { Adversary } from 'app/models/adversary.model';
 import DATA from 'assets/adversaries.json';
 import _ from 'lodash';
 

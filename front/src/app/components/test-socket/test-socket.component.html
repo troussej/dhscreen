@@ -1,0 +1,30 @@
+<div class="form-container">
+    <ng-container *ngIf="!isOnline; else online">
+        <h3>Join a name</h3>
+        <input type="text" [(ngModel)]="name" name="name" placeholder="Name">
+        <button (click)="join()">Enter</button>
+    </ng-container>
+
+    <ng-template #online>
+        <h3> {{ userName | uppercase }}, you are online!! </h3>
+        <button class="btn-close" (click)="exit()">EXIT</button>
+    </ng-template>
+</div>
+
+<div class="table-container" *ngIf="isOnline">
+    <h3>Users online: {{ (users$ | async)?.length }}</h3>
+    <table>
+        <thead>
+            <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Client Id</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let user of users$ | async">
+                <td>{{ user.name }}</td>
+                <td>{{ user.id }}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

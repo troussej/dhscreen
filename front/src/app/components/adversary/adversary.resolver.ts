@@ -14,7 +14,7 @@ export const AdversaryResolver: ResolveFn<Adversary> = (
 ): Observable<Adversary> => {
     const elem: Adversary | undefined = service.getOne(route.paramMap.get('id')!);
     if (_.isNil(elem)) {
-        throwError(() => new Error('404'))
+        return throwError(() => new Error('404'))
     }
     return of(elem!)
 }

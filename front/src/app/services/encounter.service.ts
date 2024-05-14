@@ -1,7 +1,7 @@
-import { Injectable, OnInit } from '@angular/core';
+import { Injectable, OnInit, inject } from '@angular/core';
 import { Adversary } from 'app/models/adversary.model';
 import { Encounter, EncounterElem } from 'app/models/encounter.model';
-
+import { MessageService } from 'primeng/api';
 import _ from 'lodash';
 
 import { LocalStorage } from 'ngx-webstorage';
@@ -11,6 +11,10 @@ export class EncounterService {
 
     @LocalStorage('dh-encounter', new Encounter())
     encounter!: Encounter;
+
+    constructor(private messageService: MessageService) {
+
+    }
 
     public add(adversary: Adversary, scaling = 0): void {
         const id = this.getId(adversary, scaling);
@@ -23,6 +27,7 @@ export class EncounterService {
 
         encounterElem.size++;
         this.encounter = this.encounter;
+        this.messageService.add({ severity: 'success', summary: 'Success', detail: `Added ${adversary.name} to encounter` })
     }
 
     private getId(adversary: Adversary, scaling: number) {

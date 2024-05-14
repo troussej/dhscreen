@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 
 import { User } from 'app/models/user.model';
 import { Message } from 'app/models/message.model';
-import { RollRequest, RollResult } from 'app/models/roll.model';
+import { RollRequest } from 'app/models/roll.model';
 
 @Injectable({
     providedIn: 'root',

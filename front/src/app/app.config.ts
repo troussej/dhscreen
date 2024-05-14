@@ -7,7 +7,9 @@ import { SocketIoConfig, SocketIoModule } from 'ngx-socket-io';
 import { routes } from './app.routes';
 import { MessageService } from 'primeng/api';
 
-const config: SocketIoConfig = { url: 'http://localhost:5000', options: {} };
+import { environment } from './../environments/environment';
+
+const config: SocketIoConfig = { url: environment.socketUrl, options: {} };
 
 export const appConfig: ApplicationConfig = {
   providers: [

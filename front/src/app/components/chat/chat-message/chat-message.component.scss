@@ -1,11 +1,15 @@
 :host ::ng-deep {
     .p-card-body {
         background-color: #f4f4f4;
-        padding: 0.25rem 1rem;
+        padding: 0.5rem 1rem;
     }
 
     .p-card .p-card-content {
         padding: 0;
+    }
+
+    .critical .p-card-body {
+        background-color: var(--yellow-300);
     }
 
 }

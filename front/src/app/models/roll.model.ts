@@ -1,6 +1,6 @@
 export enum DiceType {
-    DH_12,
-    D20
+    DH_12 = 'DH_12',
+    D20 = 'D20'
 }
 
 export class RollRequest {

@@ -41,8 +41,4 @@ export class SocketService {
         return this.socket.fromEvent('receive-message');
     }
 
-    receiveRoll(): Observable<RollRequest> {
-        return this.socket.fromEvent('receive-roll');
-    }
-
 }

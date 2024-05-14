@@ -1,6 +1,6 @@
 import { UpperCasePipe, AsyncPipe, CommonModule, JsonPipe } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Message } from 'app/models/message.model';
 import { SocketService } from 'app/services/socket.service';
 import { AutoFocusModule } from 'primeng/autofocus';
@@ -9,11 +9,20 @@ import _ from 'lodash';
 import { ButtonModule } from 'primeng/button';
 import { ScrollPanelModule } from 'primeng/scrollpanel';
 import { ChatMessageComponent } from './chat-message/chat-message.component';
+import { DiceType, RollRequest } from 'app/models/roll.model';
+import { InputNumberModule } from 'primeng/inputnumber';
+import { DividerModule } from 'primeng/divider';
+import { InputGroupModule } from 'primeng/inputgroup';
+import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
+import { TriStateCheckboxModule } from 'primeng/tristatecheckbox';
 
 @Component({
   selector: 'dh-chat',
   standalone: true,
-  imports: [FormsModule, UpperCasePipe, AsyncPipe, CommonModule, JsonPipe, AutoFocusModule, ButtonModule, InputTextModule, ScrollPanelModule, ChatMessageComponent],
+  imports: [FormsModule, UpperCasePipe, AsyncPipe, CommonModule, JsonPipe, AutoFocusModule, ButtonModule,
+    InputTextModule, ScrollPanelModule, ChatMessageComponent, InputNumberModule,
+    ReactiveFormsModule, DividerModule, InputGroupModule, InputGroupAddonModule, TriStateCheckboxModule
+  ],
   templateUrl: './chat.component.html',
   styleUrl: './chat.component.scss',
   providers: []
@@ -27,7 +36,9 @@ export class ChatComponent implements OnInit {
   public messages: Message[] = [];
   public messageInput = '';
 
-  constructor(private socket: SocketService) {
+  public diceForm?: FormGroup;
+
+  constructor(private socket: SocketService, private fb: FormBuilder) {
 
   }
 
@@ -37,6 +48,13 @@ export class ChatComponent implements OnInit {
       this.messages.push(msg);
 
     })
+
+    this.diceForm = this.fb.group({
+
+      'modifier': this.fb.control(0, Validators.required),
+      'advantage': this.fb.control(null, Validators.required)
+    }
+    )
   }
 
   public sendMessage() {
@@ -49,4 +67,28 @@ export class ChatComponent implements OnInit {
     this.messageInput = '';
 
   }
+
+  public sendDH12Roll() {
+
+    const msg = new RollRequest(
+      DiceType.DH_12,
+      this.diceForm?.controls['modifier'].value,
+      this.diceForm?.controls['advantage'].value === true,
+      this.diceForm?.controls['advantage'].value === false
+    );
+    this.socket.sendRoll(msg);
+
+  }
+
+  public sendD20Roll() {
+    const msg = new RollRequest(
+      DiceType.D20,
+      this.diceForm?.controls['modifier'].value,
+      this.diceForm?.controls['advantage'].value === true,
+      this.diceForm?.controls['advantage'].value === false
+    );
+    this.socket.sendRoll(msg);
+  }
+
+
 }

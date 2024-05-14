@@ -1,0 +1,23 @@
+@if (roll.critical) {
+
+{{message.sender}} rolled a CRIT with double <b>{{roll.hopeValue}}</b>!
+
+}@else{
+{{message.sender}} rolled a <b>{{roll.total}}</b> with
+@if (roll.isWithHope) {<p-tag severity="success" value="HOPE" />}
+@else {<p-tag severity="danger" value="FEAR" />}
+<br />
+<div class="text-xs">
+    <i>( <p-tag severity="success" [value]="roll.hopeValue.toString()" />
+        + <p-tag severity="danger" [value]="roll.fearValue.toString()" />
+        + <p-tag severity="info" [value]="roll.modifier.toString()" />)</i>
+</div>
+@if (roll.advantage) {
+<i>Advantage : <p-tag severity="success" [value]="roll.hopeAdvantageValue1.toString()" /> <p-tag severity="success"
+        [value]="roll.hopeAdvantageValue2.toString()" /> </i>
+}
+@if (roll.disadvantage) {
+<i>Disadvantage : <p-tag severity="warning" [value]="roll.hopeAdvantageValue1.toString()" /> <p-tag severity="warning"
+        [value]="roll.hopeAdvantageValue2.toString()" /> </i>
+}
+}

@@ -1,9 +1,25 @@
-<p-card styleClass="mb-2">
-    <p>
-        <b>
-            {{message.sender}}:<br />
+<div class="{{critical}}">
+    <p-card styleClass="mb-2 ">
+        @if (message.roll) {
+        @if (message.roll.type === 'DH_12') {
 
-        </b>
-        {{message.message}}
-    </p>
-</p-card>
+        <dh-dice-result-message [message]="message" [roll]="message.roll"></dh-dice-result-message>
+
+        }
+        @else {
+        {{message.sender}} rolled a <b>{{message.roll.total}}</b>
+        }
+        }
+
+        @else {
+        <p>
+            <b>
+                {{message.sender}}:<br />
+
+            </b>
+            {{message.message}}
+        </p>
+        }
+
+    </p-card>
+</div>

@@ -16,6 +16,7 @@ io.on('connection', (client: any) => {
     socket.addUserOnline(client, io);
     socket.removeUserOnline(client, io);
     socket.sendMessage(client, io);
+    socket.rollDice(client, io);
 });
 
 httpServer.listen(PORT, () => {

@@ -1,6 +1,6 @@
 export enum DiceType {
-    DH_12,
-    D20
+    DH_12 = 'DH_12',
+    D20 = 'D20'
 }
 
 export class RollRequest {
@@ -16,7 +16,6 @@ export class RollRequest {
 
 export class RollResult {
     constructor(
-        public userId: string,
         public type: DiceType,
         public hopeValue = 0,
         public fearValue = 0,

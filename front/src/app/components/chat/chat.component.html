@@ -6,8 +6,25 @@
     </p-scrollPanel>
 </div>
 
-<form class="form" (submit)="sendMessage()">
-
-    <input type="text" pInputText name="messageInput" [(ngModel)]="messageInput" pAutoFocus [autofocus]="true" />
-    <p-button type="submit" class="ml-1">Send</p-button>
+<form class=" " (submit)="sendMessage()">
+    <p-inputGroup>
+        <input type="text" pInputText name="messageInput" [(ngModel)]="messageInput" pAutoFocus [autofocus]="true" />
+        <button pButton type="submit">Send</button>
+    </p-inputGroup>
 </form>
+
+@if (diceForm) {
+<p-divider />
+<form class="form" [formGroup]="diceForm">
+
+    <p-inputGroup>
+        <p-inputGroupAddon>
+            <p-triStateCheckbox formControlName="advantage" inputId="checked" checkboxFalseIcon="pi pi-thumbs-down"
+                checkboxTrueIcon="pi pi-thumbs-up" />
+        </p-inputGroupAddon>
+        <input type="number" formControlName="modifier" style="width: 50px;" />
+        <button pButton (click)="sendDH12Roll()">Dual</button>
+        <button pButton (click)="sendD20Roll()">D20</button>
+    </p-inputGroup>
+</form>
+}

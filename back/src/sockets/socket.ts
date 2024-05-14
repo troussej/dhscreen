@@ -3,6 +3,7 @@ import { UserService } from '../services/user';
 
 import { RollRequest, RollResult } from '../models/dice.model';
 import { DiceRollService } from '../services/diceroll.service';
+import { Message } from '../models/message.model';
 
 export const disconnectClient = (client: Socket, io: socketIO.Server) => {
     client.on('disconnect', () => {
@@ -28,6 +29,7 @@ export const removeUserOnline = (client: Socket, io: socketIO.Server) => {
 
 export const sendMessage = (client: Socket, io: socketIO.Server) => {
     client.on('send-message', (payload) => {
+
         payload.senderId = client.id;
         payload.sender = UserService.getUserName(client.id);
         payload.date = new Date();
@@ -37,8 +39,17 @@ export const sendMessage = (client: Socket, io: socketIO.Server) => {
 
 export const rollDice = (client: Socket, io: socketIO.Server) => {
     client.on('send-roll', (payload: RollRequest) => {
-        const roll = DiceRollService.roll(client.id, payload);
-        io.emit('receive-roll', roll);
+
+        const roll = DiceRollService.roll(payload);
+
+        const msg = new Message('',
+            client.id,
+            UserService.getUserName(client.id),
+            new Date(),
+            roll
+        )
+        console.log('roll', roll);
+        io.emit('receive-message', msg);
     });
 
 };

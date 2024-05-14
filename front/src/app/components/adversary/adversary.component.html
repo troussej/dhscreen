@@ -14,7 +14,7 @@
             {{element.shortDescription}}
         </p>
 
-        <p-fieldset>
+        <p-fieldset class="mb-2">
 
             <p>
                 <b>{{element.weapon.name}}:</b> {{element.weapon.range}} - {{element.weapon.damage}}<br />
@@ -32,7 +32,7 @@
 
         </p-fieldset>
 
-        <p-fieldset legend="Features">
+        <p-fieldset legend="Features" class="mb-1">
             @for (feat of element.features; track $index) {
             <p>
                 <span>
@@ -72,8 +72,17 @@
         <p-fieldset legend="HP & Stress">
             @for (tracker of trackers; track $index) {
             <h4>{{element.name}} #{{$index+1}}</h4>
-            HP : <dh-gauge [max]="element.hitPoints" [(model)]="trackers[$index].hp" /><br />
-            Stress : <dh-gauge [max]="element.stress" [(model)]="trackers[$index].stress" /><br />
+            <table>
+                <tr>
+                    <td class="col-4">HP :</td>
+                    <td class="col-8"><dh-gauge [max]="element.hitPoints" [(model)]="trackers[$index].hp" /></td>
+                </tr>
+                <tr>
+                    <td class="col-4">Stress</td>
+                    <td class="col-12"><dh-gauge [max]="element.stress" [(model)]="trackers[$index].stress" /></td>
+                </tr>
+            </table>
+
             <p-divider />
             }
         </p-fieldset>

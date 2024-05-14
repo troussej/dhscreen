@@ -1,2 +1,15 @@
 <p-toast />
-<p-menubar [model]="items" />
+<p-menubar [model]="items">
+
+    <ng-template pTemplate="end">
+        <div class="flex align-items-center gap-2">
+            <p-button (click)="showsidebar = true" icon="pi pi-arrow-right" />
+        </div>
+    </ng-template>
+</p-menubar>
+
+
+<p-sidebar [(visible)]="showsidebar" modal="false" position="right">
+
+    <dh-sidebar />
+</p-sidebar>

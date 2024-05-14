@@ -46,7 +46,6 @@ export class ChatComponent implements OnInit {
 
     this.socket.receiveMessage().subscribe(msg => {
       this.messages.push(msg);
-
     })
 
     this.diceForm = this.fb.group({

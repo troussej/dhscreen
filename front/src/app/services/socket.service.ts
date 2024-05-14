@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { User } from 'app/models/user.model';
 import { Message } from 'app/models/message.model';
 import { RollRequest } from 'app/models/roll.model';
+import { TrackingInfo } from 'app/models/tracker.model';
 
 @Injectable({
     providedIn: 'root',
@@ -41,4 +42,30 @@ export class SocketService {
         return this.socket.fromEvent('receive-message');
     }
 
+    addFear(): void {
+        this.socket.emit('add-fear');
+    }
+    rmFear(): void {
+        this.socket.emit('rm-fear');
+    }
+    addActionToken(): void {
+        this.socket.emit('add-action-token');
+    }
+    rmActionToken(): void {
+        this.socket.emit('rm-action-token');
+    }
+    clearTracker(): void {
+        this.socket.emit('clear-tracker');
+    }
+    convertToFear(): void {
+        this.socket.emit('convert-to-fear');
+    }
+
+    getTrackerInfo(): void {
+        this.socket.emit('get-tracker-info');
+    }
+
+    receiveTrackerInfo(): Observable<TrackingInfo> {
+        return this.socket.fromEvent('receive-tracker-info');
+    }
 }

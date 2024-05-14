@@ -25,7 +25,6 @@ export class SidebarComponent {
   @LocalStorage()
   userName?: string;
 
-  name: string = '';
   isOnline: boolean = false;
 
   constructor(private socket: SocketService) { }
@@ -40,22 +39,20 @@ export class SidebarComponent {
         ))
       ;
     if (!_.isEmpty(this.userName)) {
-      this.name = this.userName!;
       this.join();
     }
   }
 
   join() {
-    if (!this.name) {
+    if (!this.userName) {
       return;
     }
 
     this.socket.emitUser({
       id: null,
-      name: this.name,
+      name: this.userName,
     });
-    this.userName = this.name;
-    this.name = '';
+
     this.isOnline = true;
   }
 

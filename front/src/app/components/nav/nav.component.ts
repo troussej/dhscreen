@@ -20,21 +20,14 @@ export class NavComponent {
       routerLink: 'home'
     },
     {
-      label: 'tracker',
+      label: 'Tracker',
       routerLink: 'tracker'
     },
     {
-      label: 'encounter',
+      label: 'Encounter',
       routerLink: 'encounter'
-    },
-    {
-      label: 'Bladed Guards',
-      routerLink: 'adversary/Bladed Guards'
-    },
-    {
-      label: 'Bear',
-      routerLink: 'adversary/Bear'
     }
+
   ];
 
   showsidebar = true;

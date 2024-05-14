@@ -2,7 +2,7 @@
     <ng-container *ngIf="!isOnline; else online">
         <form (submit)="join()">
             <h3>Join chat</h3>
-            <input pInputText type="text" [(ngModel)]="name" name="name" placeholder="Name">
+            <input pInputText type="text" [(ngModel)]="userName" name="name" placeholder="Name">
             <p-button type="submit" class="ml-1">Enter</p-button>
         </form>
     </ng-container>

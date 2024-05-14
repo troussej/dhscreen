@@ -17,6 +17,14 @@ io.on('connection', (client: any) => {
     socket.removeUserOnline(client, io);
     socket.sendMessage(client, io);
     socket.rollDice(client, io);
+    socket.addActionToken(client, io);
+    socket.addFear(client, io);
+    socket.convertToFear(client, io);
+    socket.getTrackerInfo(client, io);
+    socket.rmFear(client, io);
+    socket.rmActionToken(client, io);
+    socket.getTrackerInfo(client, io);
+    socket.clearTracker(client, io);
 });
 
 httpServer.listen(PORT, () => {

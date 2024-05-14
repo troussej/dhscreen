@@ -1,6 +1,6 @@
 import socketIO, { Socket } from 'socket.io';
 import { UserService } from '../services/user';
-
+import { TrackerService } from '../services/tracker.service';
 import { RollRequest, RollResult } from '../models/dice.model';
 import { DiceRollService } from '../services/diceroll.service';
 import { Message } from '../models/message.model';
@@ -50,6 +50,68 @@ export const rollDice = (client: Socket, io: socketIO.Server) => {
         )
         console.log('roll', roll);
         io.emit('receive-message', msg);
+    });
+
+};
+
+export const addFear = (client: Socket, io: socketIO.Server) => {
+    client.on('add-fear', () => {
+
+        TrackerService.addFear();
+        io.emit('receive-tracker-info', TrackerService.info);
+    });
+
+};
+
+export const rmFear = (client: Socket, io: socketIO.Server) => {
+    client.on('rm-fear', () => {
+
+        TrackerService.rmFear();
+        io.emit('receive-tracker-info', TrackerService.info);
+    });
+
+};
+
+
+
+export const addActionToken = (client: Socket, io: socketIO.Server) => {
+    client.on('add-action-token', () => {
+
+        TrackerService.addActionToken();
+        io.emit('receive-tracker-info', TrackerService.info);
+    });
+
+};
+
+export const rmActionToken = (client: Socket, io: socketIO.Server) => {
+    client.on('rm-action-token', () => {
+
+        TrackerService.rmActionToken();
+        io.emit('receive-tracker-info', TrackerService.info);
+    });
+
+};
+
+export const convertToFear = (client: Socket, io: socketIO.Server) => {
+    client.on('convert-to-fear', () => {
+
+        TrackerService.convertToFear();
+        io.emit('receive-tracker-info', TrackerService.info);
+    });
+
+};
+
+export const getTrackerInfo = (client: Socket, io: socketIO.Server) => {
+    client.on('get-tracker-info', () => {
+        io.emit('receive-tracker-info', TrackerService.info);
+    });
+
+};
+
+export const clearTracker = (client: Socket, io: socketIO.Server) => {
+    client.on('clear-tracker', () => {
+        TrackerService.clear();
+        io.emit('receive-tracker-info', TrackerService.info);
     });
 
 };

@@ -1,1 +1,28 @@
-<p>tracker works!</p>
+<p-card>
+
+
+    <p-button (click)="clear()" severity="secondary" styleClass="mb-4"><i class="pi pi-ban"></i></p-button>
+    <br />
+
+    <p-inputGroup>
+        <p-inputGroupAddon>
+            <span>Action Tokens</span>
+        </p-inputGroupAddon>
+        <input type="number" [ngModel]="(data$|async)?.dmActionTokens" disabled="true" />
+        <p-button (click)="rmActionToken()"><i class="pi pi-minus"></i></p-button>
+        <p-button (click)="addActionToken()"><i class="pi pi-plus"></i></p-button>
+    </p-inputGroup>
+    <br />
+    <p-inputGroup>
+        <p-inputGroupAddon>
+            <span>Fear</span>
+        </p-inputGroupAddon>
+        <input type="number" [ngModel]="(data$|async)?.dmFear" disabled="true" />
+        <p-button (click)="rmFear()"><i class="pi pi-minus"></i></p-button>
+        <p-button (click)="addFear()"><i class="pi pi-plus"></i></p-button>
+        <p-button (click)="convertToFear()" severity="info"><i class="pi pi-arrow-right-arrow-left"></i></p-button>
+
+    </p-inputGroup>
+
+
+</p-card>

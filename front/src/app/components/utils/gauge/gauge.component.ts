@@ -3,7 +3,7 @@ import { FormsModule } from '@angular/forms';
 import { RatingModule } from 'primeng/rating';
 
 @Component({
-  selector: 'dh-gage',
+  selector: 'dh-gauge',
   standalone: true,
   imports: [RatingModule, FormsModule],
   templateUrl: './gauge.component.html',

@@ -72,8 +72,8 @@
         <p-fieldset legend="HP & Stress">
             @for (tracker of trackers; track $index) {
             <h4>{{element.name}} #{{$index+1}}</h4>
-            HP : <dh-gage [max]="element.hitPoints" [(model)]="trackers[$index].hp" /><br />
-            Stress : <dh-gage [max]="element.stress" [(model)]="trackers[$index].stress" /><br />
+            HP : <dh-gauge [max]="element.hitPoints" [(model)]="trackers[$index].hp" /><br />
+            Stress : <dh-gauge [max]="element.stress" [(model)]="trackers[$index].stress" /><br />
             <p-divider />
             }
         </p-fieldset>

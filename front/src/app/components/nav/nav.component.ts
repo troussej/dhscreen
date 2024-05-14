@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
-import { SidebarComponent } from 'app/component/sidebar/sidebar.component';
+import { SidebarComponent } from 'app/components/sidebar/sidebar.component';
 import { MenuItem } from 'primeng/api/menuitem';
 import { ButtonModule } from 'primeng/button';
 import { SidebarModule } from 'primeng/sidebar';
 import { MenubarModule } from 'primeng/menubar';
 import { ToastModule } from 'primeng/toast';
+import { ChatComponent } from '../chat/chat.component';
 @Component({
   selector: 'dh-nav',
   standalone: true,

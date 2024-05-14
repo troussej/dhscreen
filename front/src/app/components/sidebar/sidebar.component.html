@@ -1,0 +1,34 @@
+<div>
+    <ng-container *ngIf="!isOnline; else online">
+        <form (submit)="join()">
+
+            <h3>Join chat</h3>
+            <input pInputText type="text" [(ngModel)]="name" name="name" placeholder="Name">
+            <p-button type="submit" class="ml-1">Enter</p-button>
+        </form>
+    </ng-container>
+
+    <ng-template #online>
+        <div class="table-container">
+
+            <dh-chat [userName]="userName!" />
+
+            <p-divider />
+            <p-button class="mt-2" severity="secondary" (click)="exit()">EXIT</p-button>
+            <table>
+                <thead>
+                    <tr>
+                        <th scope="col">Players</th>
+                        <!-- <th scope="col">Client Id</th> -->
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let user of users$ | async">
+                        <td>{{ user.name }}</td>
+                        <!-- <td>{{ user.id }}</td> -->
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </ng-template>
+</div>

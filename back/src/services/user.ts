@@ -1,5 +1,8 @@
-export class User {
-    private static userList: { id: string; name: string }[] = [];
+import { User } from "../models/user.model";
+import _ from 'lodash';
+
+export class UserService {
+    private static userList: User[] = [];
 
     private constructor() { }
 
@@ -19,5 +22,9 @@ export class User {
         if (this.userList) {
             this.userList = this.userList.filter((user) => user.id != id);
         }
+    }
+
+    public static getUserName(id: string): string {
+        return _.find(this.userList, ['id', id])?.name || '';
     }
 }

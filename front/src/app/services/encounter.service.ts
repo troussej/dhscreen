@@ -1,6 +1,6 @@
 import { Injectable, OnInit, inject } from '@angular/core';
 import { Adversary } from 'app/models/adversary.model';
-import { Encounter, EncounterElem } from 'app/models/encounter.model';
+import { Encounter, EncounterElem, HpTracker } from 'app/models/encounter.model';
 import { MessageService } from 'primeng/api';
 import _ from 'lodash';
 
@@ -21,12 +21,11 @@ export class EncounterService {
 
         let encounterElem = this.encounter.elements[id];
         if (_.isNil(encounterElem)) {
-            encounterElem = new EncounterElem(adversary, id);
+            encounterElem = new EncounterElem(adversary.name, id);
             this.encounter.elements[id] = encounterElem;
         }
+        this.incSize(id);
 
-        encounterElem.size++;
-        this.encounter = this.encounter;
         this.messageService.add({ severity: 'success', summary: 'Success', detail: `Added ${adversary.name} to encounter` })
     }
 
@@ -34,19 +33,37 @@ export class EncounterService {
         return `${adversary.name}-${scaling}`;
     }
 
-    remove(id: string) {
+    incSize(id: string) {
         let encounterElem = this.encounter.elements[id];
         if (encounterElem) {
-            encounterElem.size--;
-            if (encounterElem.size === 0) {
+            encounterElem.trackers.push(new HpTracker());
+        }
+        this.syncStorage();
+
+    }
+
+    decSize(id: string) {
+        let encounterElem = this.encounter.elements[id];
+        if (encounterElem) {
+
+            encounterElem.trackers.pop();
+            if (encounterElem.trackers.length === 0) {
                 delete this.encounter.elements[id];
             }
         }
-        this.encounter = this.encounter;
+        this.syncStorage();
     }
 
+    remove(id: string) {
+        delete this.encounter.elements[id];
+        this.syncStorage();
+    }
 
     public getCurrent(): Encounter {
         return this.encounter;
+    }
+
+    private syncStorage(): void {
+        this.encounter = this.encounter;
     }
 }

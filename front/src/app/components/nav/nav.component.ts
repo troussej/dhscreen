@@ -6,6 +6,7 @@ import { SidebarModule } from 'primeng/sidebar';
 import { MenubarModule } from 'primeng/menubar';
 import { ToastModule } from 'primeng/toast';
 import { ChatComponent } from '../chat/chat.component';
+import { LocalStorage } from 'ngx-webstorage';
 @Component({
   selector: 'dh-nav',
   standalone: true,
@@ -30,5 +31,6 @@ export class NavComponent {
 
   ];
 
-  showsidebar = true;
+  @LocalStorage('showSidebar', true)
+  showsidebar!: boolean;
 }

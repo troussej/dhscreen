@@ -1,95 +1,70 @@
-@if (element) {
-<p-scrollPanel [style]="{ width: '100%', height: '600px' }">
+@if (adversary) {
 
+<p-card [header]="adversary.name" [subheader]="adversary.type">
 
-    <p-card [subheader]="element.type">
+    <p><p-tag class="tier">{{adversary.tier}}</p-tag></p>
+    <p>
+        {{adversary.shortDescription}}
+    </p>
 
-        <ng-template pTemplate="header">
-            <p class="p-card-body p-card-title title">
-                <p-tag class="tier">{{element.tier}}</p-tag>
-                {{element.name}}
-            </p>
-        </ng-template>
+    <p-fieldset class="mb-2">
+
         <p>
-            {{element.shortDescription}}
+            <b>{{adversary.weapon.name}}:</b> {{adversary.weapon.range}} - {{adversary.weapon.damage}}<br />
+            <b>Attack modifier</b> <p-tag value="{{adversary.attackModifier}}" /><br />
+            <span>
+                <b>Difficulty</b> <p-tag value="{{adversary.difficulty}}" />
+            </span>
         </p>
 
-        <p-fieldset class="mb-2">
+        <p><b>Motives & Tactics</b><br />
+            @for (mat of adversary.motivesAndTactics; track $index) {
+            {{mat}},
+            }
+        </p>
 
-            <p>
-                <b>{{element.weapon.name}}:</b> {{element.weapon.range}} - {{element.weapon.damage}}<br />
-                <b>Attack modifier</b> <p-tag value="{{element.attackModifier}}" /><br />
-                <span>
-                    <b>Difficulty</b> <p-tag value="{{element.difficulty}}" />
-                </span>
-            </p>
+    </p-fieldset>
 
-            <p><b>Motives & Tactics</b><br />
-                @for (mat of element.motivesAndTactics; track $index) {
-                {{mat}},
-                }
-            </p>
-
-        </p-fieldset>
-
-        <p-fieldset legend="Features" class="mb-1">
-            @for (feat of element.features; track $index) {
-            <p>
-                <span>
-                    <b>
-                        {{feat.name}}
-                        @if(feat.value){
-                        ({{feat.value}})
-                        }
-                    </b>
-                    - {{feat.type}}
-                </span>
-                <br />
-                @if (feat.cost && feat.cost.stress ) {
-                Stress cost : {{feat.cost.stress}} <br />
-                }
-                @if (feat.cost && feat.cost.fear ) {
-                Fear : {{feat.cost.fear}}<br />
-                }
-                @if (feat.cost && feat.cost.actions ) {
-                Actions : {{feat.cost.actions}}<br />
-                }
-                @if (feat.uses ) {
-                Uses : {{feat.uses}}<br />
-                }
-
-
-            </p>
-            <p>
-
-                {{feat.description}}
-            </p>
-            <p-divider />
+    <p-fieldset legend="Features" class="mb-1">
+        @for (feat of adversary.features; track $index) {
+        <p>
+            <span>
+                <b>
+                    {{feat.name}}
+                    @if(feat.value){
+                    ({{feat.value}})
+                    }
+                </b>
+                - {{feat.type}}
+            </span>
+            <br />
+            @if (feat.cost && feat.cost.stress ) {
+            Stress cost : {{feat.cost.stress}} <br />
+            }
+            @if (feat.cost && feat.cost.fear ) {
+            Fear : {{feat.cost.fear}}<br />
+            }
+            @if (feat.cost && feat.cost.actions ) {
+            Actions : {{feat.cost.actions}}<br />
+            }
+            @if (feat.uses ) {
+            Uses : {{feat.uses}}<br />
             }
 
-        </p-fieldset>
 
-        <p-fieldset legend="HP & Stress">
-            @for (tracker of trackers; track $index) {
-            <h4>{{element.name}} #{{$index+1}}</h4>
-            <table>
-                <tr>
-                    <td class="col-4">HP :</td>
-                    <td class="col-8"><dh-gauge [max]="element.hitPoints" [(model)]="trackers[$index].hp" /></td>
-                </tr>
-                <tr>
-                    <td class="col-4">Stress</td>
-                    <td class="col-12"><dh-gauge [max]="element.stress" [(model)]="trackers[$index].stress" /></td>
-                </tr>
-            </table>
+        </p>
+        <p>
 
-            <p-divider />
-            }
-        </p-fieldset>
+            {{feat.description}}
+        </p>
+        <p-divider />
+        }
 
-        <ng-template pTemplate="footer">
+    </p-fieldset>
 
-        </ng-template>
-    </p-card>
-</p-scrollPanel>
+    <ng-template pTemplate="footer">
+
+    </ng-template>
+</p-card>
+
 }

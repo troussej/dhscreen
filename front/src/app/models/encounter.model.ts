@@ -12,10 +12,10 @@ export class Encounter {
 
 export class EncounterElem {
     constructor(
-        public adversary: Adversary,
+        public adversaryName: string,
         public id: string,
         public scaling = 0,
-        public size = 0,
+        public trackers: HpTracker[] = []
     ) { }
 
 

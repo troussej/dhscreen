@@ -1,7 +1,15 @@
-<p-carousel [value]="elements" [numVisible]="4" [numScroll]="4">
-    <ng-template let-item pTemplate="item">
-        <dh-adversary [element]="item.adversary" [encounterElement]="item"></dh-adversary>
-        <p-button severity="danger" size="small" (onClick)="remove(item.id)">Remove</p-button>
+<p-carousel [value]="elements" [numVisible]="size" [numScroll]="size">
+    <ng-template let-encounter pTemplate="encounter">
+        <p-scrollPanel [style]="{ width: '100%', height: '80vh' }">
+
+            <dh-encounter-item [encounter]="encounter"></dh-encounter-item>
+        </p-scrollPanel>
     </ng-template>
 
 </p-carousel>
+
+
+<p-button severity="info" size="small" (onClick)="size>1?size=size-1:size=1"><i class="pi pi-minus"></i></p-button>
+<p-button severity="secondary" size="small">{{size}}/{{elements.length}}</p-button>
+<p-button severity="info" size="small" (onClick)="size<=elements.length-1?size=size+1:size"><i
+        class="pi pi-plus"></i></p-button>

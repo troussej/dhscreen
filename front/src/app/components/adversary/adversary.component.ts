@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Adversary } from '../../models/adversary.model';
 import _ from 'lodash';
@@ -14,15 +14,15 @@ import { EncounterElem, HpTracker } from 'app/models/encounter.model';
 import { BadgeModule } from 'primeng/badge';
 import { TagModule } from 'primeng/tag';
 import { DividerModule } from 'primeng/divider';
-import { ScrollPanelModule } from 'primeng/scrollpanel';
 import { RatingModule } from 'primeng/rating';
 import { GaugeComponent } from '../utils/gauge/gauge.component';
+import { AdversaryService } from 'app/services/adversary.service';
 @Component({
   selector: 'dh-adversary',
   standalone: true,
   imports: [
     CardModule, ButtonModule, RippleModule, RatingModule, FormsModule,
-    FieldsetModule, PanelModule, TagModule, DividerModule, ScrollPanelModule,
+    FieldsetModule, PanelModule, TagModule, DividerModule,
     GaugeComponent
   ],
   providers: [MessageService],
@@ -32,40 +32,24 @@ import { GaugeComponent } from '../utils/gauge/gauge.component';
 export class AdversaryComponent implements OnInit {
 
 
-
   @Input()
-  element: Adversary | null = null;
+  adversary: Adversary | null = null;
 
-  @Input()
-  encounterElement: EncounterElem | null = null;
-
-  trackers: HpTracker[] = [];
-
-  constructor(private route: ActivatedRoute) {
+  constructor(private route: ActivatedRoute, private service: AdversaryService) {
 
   }
 
   ngOnInit(): void {
 
-    if (this.element === null) {
+
+
+    if (this.adversary === null) {
       this.route.data.pipe(map(({ element }) => element)).subscribe(el => {
-        this.element = el;
+        this.adversary = el;
       })
     }
 
-    if (this.encounterElement) {
-      this.trackers = Array(this.encounterElement.size).fill(1).map(() => { return new HpTracker() });
-    } else {
-      //1 seul
-      this.trackers.push(new HpTracker());
-    }
+
   }
 
-
-  get header(): string {
-    if (this.encounterElement === null) {
-      return this.element?.name || '';
-    }
-    return `${this.element?.name || ''} (${this.encounterElement.size})`
-  }
 }

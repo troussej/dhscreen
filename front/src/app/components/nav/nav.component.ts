@@ -21,6 +21,10 @@ export class NavComponent {
       routerLink: 'home'
     },
     {
+      label: 'Adversaries',
+      routerLink: 'adversairies'
+    },
+    {
       label: 'Tracker',
       routerLink: 'tracker'
     },

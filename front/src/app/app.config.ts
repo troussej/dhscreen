@@ -5,7 +5,7 @@ import { NgxWebstorageModule } from 'ngx-webstorage';
 import { SocketIoConfig, SocketIoModule } from 'ngx-socket-io';
 
 import { routes } from './app.routes';
-import { MessageService } from 'primeng/api';
+import { FilterService, MessageService } from 'primeng/api';
 
 import { environment } from './../environments/environment';
 
@@ -17,6 +17,7 @@ export const appConfig: ApplicationConfig = {
     provideAnimations(),
     importProvidersFrom(NgxWebstorageModule.forRoot({})),
     importProvidersFrom(SocketIoModule.forRoot(config)),
-    MessageService
+    MessageService,
+    FilterService
   ]
 };

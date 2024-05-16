@@ -5,6 +5,7 @@ import { AdversaryComponent } from './components/adversary/adversary.component';
 import { AdversaryResolver } from './components/adversary/adversary.resolver';
 import { EncounterComponent } from './components/encounter/encounter.component';
 import { TestSocketComponent } from './components/test-socket/test-socket.component';
+import { AdversaryListComponent } from './components/adversary-list/adversary-list.component';
 
 export const routes: Routes = [
     {
@@ -28,6 +29,10 @@ export const routes: Routes = [
     {
         path: 'socket',
         component: TestSocketComponent
+    },
+    {
+        path: 'adversairies',
+        component: AdversaryListComponent
     }
 ];
 

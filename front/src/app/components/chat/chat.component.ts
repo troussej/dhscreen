@@ -1,5 +1,5 @@
-import { UpperCasePipe, AsyncPipe, CommonModule, JsonPipe } from '@angular/common';
-import { Component, Input, OnInit } from '@angular/core';
+import { UpperCasePipe, AsyncPipe, CommonModule, JsonPipe, ViewportScroller } from '@angular/common';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Message } from 'app/models/message.model';
 import { SocketService } from 'app/services/socket.service';
@@ -7,7 +7,7 @@ import { AutoFocusModule } from 'primeng/autofocus';
 import { InputTextModule } from 'primeng/inputtext';
 import _ from 'lodash';
 import { ButtonModule } from 'primeng/button';
-import { ScrollPanelModule } from 'primeng/scrollpanel';
+import { ScrollPanel, ScrollPanelModule } from 'primeng/scrollpanel';
 import { ChatMessageComponent } from './chat-message/chat-message.component';
 import { DiceType, RollRequest } from 'app/models/roll.model';
 import { InputNumberModule } from 'primeng/inputnumber';
@@ -32,13 +32,17 @@ export class ChatComponent implements OnInit {
   @Input()
   public userName: string = '';
 
+  @ViewChild(ScrollPanel)
+  scrollPanel?: ScrollPanel;
 
   public messages: Message[] = [];
   public messageInput = '';
 
   public diceForm?: FormGroup;
 
-  constructor(private socket: SocketService, private fb: FormBuilder) {
+  constructor(private socket: SocketService, private fb: FormBuilder
+
+  ) {
 
   }
 
@@ -46,6 +50,13 @@ export class ChatComponent implements OnInit {
 
     this.socket.receiveMessage().subscribe(msg => {
       this.messages.push(msg);
+
+      setTimeout(() => {
+        this.scrollPanel?.scrollTop(Number.MAX_VALUE);
+      }, 50
+
+      )
+      // this.scrollPanel?.refresh();
     })
 
     this.diceForm = this.fb.group({
@@ -55,6 +66,8 @@ export class ChatComponent implements OnInit {
     }
     )
   }
+
+
 
   public sendMessage() {
     if (_.isEmpty(this.messageInput)) {

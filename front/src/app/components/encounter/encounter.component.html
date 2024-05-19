@@ -8,9 +8,11 @@
 
 </p-carousel>
 
+<p-buttonGroup>
 
 
-<p-button severity="info" size="small" (onClick)="size>1?size=size-1:size=1"><i class="pi pi-minus"></i></p-button>
-<p-button severity="secondary" size="small">{{size}}/{{elements.length}}</p-button>
-<p-button severity="info" size="small" (onClick)="size<=elements.length-1?size=size+1:size"><i
-        class="pi pi-plus"></i></p-button>
+    <p-button severity="info" size="small" (onClick)="size>1?size=size-1:size=1"><i class="pi pi-minus"></i></p-button>
+    <p-button severity="secondary" size="small">{{size}}/{{elements.length}}</p-button>
+    <p-button severity="info" size="small" (onClick)="size<=elements.length-1?size=size+1:size"><i
+            class="pi pi-plus"></i></p-button>
+</p-buttonGroup>

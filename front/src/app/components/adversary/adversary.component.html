@@ -7,7 +7,7 @@
         {{adversary.shortDescription}}
     </p>
 
-    <p-fieldset class="mb-2">
+    <p-fieldset class="mb-2" [toggleable]="true">
 
         <p>
             <b>{{adversary.weapon.name}}:</b> {{adversary.weapon.range}} - {{adversary.weapon.damage}}<br />
@@ -25,7 +25,7 @@
 
     </p-fieldset>
 
-    <p-fieldset legend="Features" class="mb-1">
+    <p-fieldset legend="Features" class="mb-1" [toggleable]="true">
         @for (feat of adversary.features; track $index) {
         <p>
             <span>

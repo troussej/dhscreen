@@ -11,12 +11,13 @@ import { GaugeComponent } from '../utils/gauge/gauge.component';
 import { EncounterItemComponent } from './encounter-item/encounter-item.component';
 import { ScrollPanelModule } from 'primeng/scrollpanel';
 import { LocalStorage } from 'ngx-webstorage';
+import { ButtonGroupModule } from 'primeng/buttongroup';
 
 
 @Component({
   selector: 'dh-encounter',
   standalone: true,
-  imports: [RouterLink, ButtonModule, ButtonModule, ScrollPanelModule,
+  imports: [RouterLink, ButtonModule, ButtonModule, ScrollPanelModule, ButtonGroupModule,
     CarouselModule, CardModule, FieldsetModule, DividerModule, GaugeComponent, EncounterItemComponent],
   templateUrl: './encounter.component.html',
   styleUrl: './encounter.component.scss'

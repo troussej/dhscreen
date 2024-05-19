@@ -6,6 +6,7 @@ import { EncounterElem } from 'app/models/encounter.model';
 import { AdversaryService } from 'app/services/adversary.service';
 import { EncounterService } from 'app/services/encounter.service';
 import { ButtonModule } from 'primeng/button';
+import { ButtonGroupModule } from 'primeng/buttongroup';
 import { CardModule } from 'primeng/card';
 import { CarouselModule } from 'primeng/carousel';
 import { DividerModule } from 'primeng/divider';
@@ -15,7 +16,7 @@ import { FieldsetModule } from 'primeng/fieldset';
   selector: 'dh-encounter-item',
   standalone: true,
   imports: [ButtonModule, AdversaryComponent,
-    CarouselModule, CardModule, FieldsetModule, DividerModule, GaugeComponent],
+    CarouselModule, CardModule, FieldsetModule, DividerModule, GaugeComponent, ButtonGroupModule],
   templateUrl: './encounter-item.component.html',
   styleUrl: './encounter-item.component.scss'
 })

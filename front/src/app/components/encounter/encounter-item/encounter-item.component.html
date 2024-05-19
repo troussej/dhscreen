@@ -18,9 +18,11 @@
     }
 </p-fieldset>
 <p-card>
+    <p-buttonGroup>
 
-    <p-button severity="info" size="small" (onClick)="decSize(encounter.id)"><i class="pi pi-minus"></i></p-button>
-    <p-button severity="info" size="small" (onClick)="incSize(encounter.id)"><i class="pi pi-plus"></i>
-    </p-button>
-    <p-button severity="danger" size="small" (onClick)="remove(encounter.id)"><i class="pi pi-ban"></i></p-button>
+        <p-button severity="info" size="small" (onClick)="decSize(encounter.id)"><i class="pi pi-minus"></i></p-button>
+        <p-button severity="info" size="small" (onClick)="incSize(encounter.id)"><i class="pi pi-plus"></i>
+        </p-button>
+        <p-button severity="danger" size="small" (onClick)="remove(encounter.id)"><i class="pi pi-ban"></i></p-button>
+    </p-buttonGroup>
 </p-card>

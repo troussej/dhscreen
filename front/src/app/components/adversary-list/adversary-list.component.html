@@ -1,14 +1,3 @@
-<!-- <ul>
-    @for (item of adversaryService.getAll(); track $index) {
-    <li>
-        <a routerLink="/adversary/{{item.name}}">
-            {{item.name}}
-        </a>
-        <dh-add-to-encounter [element]="item"></dh-add-to-encounter>
-    </li>
-    }
-</ul> -->
-
 <p-dataView #dv [value]="adversaries" [rows]="5" [paginator]="true" [sortField]="sortField" [sortOrder]="sortOrder">
     <ng-template pTemplate="header">
 
@@ -46,7 +35,7 @@
                         <div class="flex flex-column md:align-items-end gap-5">
 
                             <div class="flex flex-row-reverse md:flex-row gap-2">
-                                <dh-add-to-encounter [element]="item"></dh-add-to-encounter>
+                                <dh-add-to-encounter [element]="item" [long]="false"></dh-add-to-encounter>
                             </div>
                         </div>
                     </div>

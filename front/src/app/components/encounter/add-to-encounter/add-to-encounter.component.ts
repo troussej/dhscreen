@@ -15,6 +15,8 @@ export class AddToEncounterComponent {
 
   @Input()
   element!: Adversary
+  @Input()
+  long = true;
 
   constructor(
     private encounterService: EncounterService) {

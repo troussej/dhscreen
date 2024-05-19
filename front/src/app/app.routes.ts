@@ -6,6 +6,7 @@ import { AdversaryResolver } from './components/adversary/adversary.resolver';
 import { EncounterComponent } from './components/encounter/encounter.component';
 import { TestSocketComponent } from './components/test-socket/test-socket.component';
 import { AdversaryListComponent } from './components/adversary-list/adversary-list.component';
+import { EncounterEditorComponent } from './components/encounter/encounter-editor/encounter-editor.component';
 
 export const routes: Routes = [
     {
@@ -32,7 +33,7 @@ export const routes: Routes = [
     },
     {
         path: 'adversairies',
-        component: AdversaryListComponent
+        component: EncounterEditorComponent
     }
 ];
 

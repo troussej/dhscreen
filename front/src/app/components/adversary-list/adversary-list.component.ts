@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { AddToEncounterComponent } from '../add-to-encounter/add-to-encounter.component';
+import { AddToEncounterComponent } from '../encounter/add-to-encounter/add-to-encounter.component';
 import { AdversaryService } from 'app/services/adversary.service';
 import { DataViewModule } from 'primeng/dataview';
 import { CommonModule } from '@angular/common';
@@ -42,6 +42,8 @@ export class AdversaryListComponent implements OnInit {
   @LocalStorage('adv-type', null)
   type!: string | null;
 
+  searchString = '';
+
   constructor(
     public adversaryService: AdversaryService
 
@@ -61,6 +63,7 @@ export class AdversaryListComponent implements OnInit {
     this.adversaries = this.adversaryService.getAll();
     this.applyFilter('tier', this.tier);
     this.applyFilter('type', this.type);
+    //this.applyFilter('name', this.searchString);
   }
 
   private getOptions<T>(filterName: string): SelectItem<T>[] {
@@ -68,7 +71,7 @@ export class AdversaryListComponent implements OnInit {
   }
 
   private applyFilter<T>(filterName: string, filter: T): void {
-    if (filter != null) {
+    if (filter != null && _.isEmpty(filter)) {
       this.adversaries = _.filter(this.adversaries, [filterName, filter]);
     }
   }

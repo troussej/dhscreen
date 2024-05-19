@@ -2,8 +2,7 @@ import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { EncounterService } from 'app/services/encounter.service';
 import { ButtonModule } from 'primeng/button';
-import { Encounter, EncounterElem } from '../../models/encounter.model';
-import { AdversaryComponent } from '../adversary/adversary.component';
+import { EncounterElem } from '../../models/encounter.model';
 import { CarouselModule } from 'primeng/carousel';
 import { CardModule } from 'primeng/card';
 import { FieldsetModule } from 'primeng/fieldset';
@@ -13,10 +12,11 @@ import { EncounterItemComponent } from './encounter-item/encounter-item.componen
 import { ScrollPanelModule } from 'primeng/scrollpanel';
 import { LocalStorage } from 'ngx-webstorage';
 
+
 @Component({
   selector: 'dh-encounter',
   standalone: true,
-  imports: [RouterLink, ButtonModule, ScrollPanelModule,
+  imports: [RouterLink, ButtonModule, ButtonModule, ScrollPanelModule,
     CarouselModule, CardModule, FieldsetModule, DividerModule, GaugeComponent, EncounterItemComponent],
   templateUrl: './encounter.component.html',
   styleUrl: './encounter.component.scss'

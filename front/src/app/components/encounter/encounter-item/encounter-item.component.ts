@@ -25,6 +25,9 @@ export class EncounterItemComponent implements OnInit {
 
   adversary!: Adversary;
 
+  @Input()
+  stats = true;
+
   constructor(
     private encounterService: EncounterService,
     private adversaryService: AdversaryService) { }

@@ -1,0 +1,17 @@
+:host ::ng-deep {
+
+    .adversaries {
+        border-right: 1px solid #e2e8f0;
+    }
+
+    .actions ::ng-deep {
+        .p-button {
+            font-size: 0.75rem;
+        }
+
+        .pi {
+            font-size: 0.75rem;
+        }
+
+    }
+}

@@ -17,13 +17,14 @@ import { DividerModule } from 'primeng/divider';
 import { RatingModule } from 'primeng/rating';
 import { GaugeComponent } from '../utils/gauge/gauge.component';
 import { AdversaryService } from 'app/services/adversary.service';
+import { DamageThresholdsComponent } from './damage-thresholds/damage-thresholds.component';
 @Component({
   selector: 'dh-adversary',
   standalone: true,
   imports: [
     CardModule, ButtonModule, RippleModule, RatingModule, FormsModule,
     FieldsetModule, PanelModule, TagModule, DividerModule,
-    GaugeComponent
+    GaugeComponent, DamageThresholdsComponent
   ],
   providers: [MessageService],
   templateUrl: './adversary.component.html',

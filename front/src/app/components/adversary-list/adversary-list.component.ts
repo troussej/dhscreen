@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { RouterLink, RouterModule } from '@angular/router';
 import { AddToEncounterComponent } from '../encounter/add-to-encounter/add-to-encounter.component';
 import { AdversaryService } from 'app/services/adversary.service';
 import { DataViewModule } from 'primeng/dataview';
@@ -19,7 +19,7 @@ import { LocalStorage } from 'ngx-webstorage';
 @Component({
   selector: 'dh-adversary-list',
   standalone: true,
-  imports: [RouterLink, AddToEncounterComponent, DataViewModule, CommonModule, TagModule, ButtonModule, DropdownModule, FormsModule],
+  imports: [RouterLink, AddToEncounterComponent, DataViewModule, CommonModule, TagModule, ButtonModule, DropdownModule, FormsModule, RouterModule],
   templateUrl: './adversary-list.component.html',
   styleUrl: './adversary-list.component.scss'
 })

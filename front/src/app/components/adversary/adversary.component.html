@@ -62,6 +62,24 @@
 
     </p-fieldset>
 
+    <p-fieldset legend="HP" class="mb-1" [toggleable]="true">
+        <div class="flex flex-row flex-nowrap gap-1">
+            <div class="flex flex-column align-items-left justify-content-center gap-1">
+                <div>HP : </div>
+                <div>Stress : </div>
+            </div>
+            <div class="flex flex-column align-items-left justify-content-center gap-1">
+                <p-tag severity="contrast">{{adversary.hitPoints}}</p-tag>
+                <p-tag severity="contrast">{{adversary.stress}}</p-tag>
+            </div>
+            <div class="flex align-items-center justify-content-center ml-3">
+
+                <dh-damage-thresholds [element]="adversary.damageThresholds"></dh-damage-thresholds>
+            </div>
+        </div>
+        <ng-content select="[gauges]"></ng-content>
+    </p-fieldset>
+
     <ng-template pTemplate="footer">
 
     </ng-template>

@@ -1,28 +1,34 @@
-<dh-adversary [adversary]="adversary"></dh-adversary>
-<p-fieldset legend="HP & Stress">
-    @for (tracker of encounter.trackers; track $index) {
-    <h4>{{encounter.adversaryName}} #{{$index+1}}</h4>
-    <table>
-        <tr>
-            <td class="col-4">HP :</td>
-            <td class="col-8"><dh-gauge [max]="adversary.hitPoints" [(model)]="encounter.trackers[$index].hp" />
-            </td>
-        </tr>
-        <tr>
-            <td class="col-4">Stress</td>
-            <td class="col-12"><dh-gauge [max]="adversary.stress" [(model)]="encounter.trackers[$index].stress" /></td>
-        </tr>
-    </table>
+<dh-adversary [adversary]="adversary">
+    <div gauges>
+        @for (tracker of encounter.trackers; track $index) {
+        <p-divider />
+        <h4>{{encounter.adversaryName}} #{{$index+1}}</h4>
+        <table>
+            <tr>
+                <td class="col-4">HP :</td>
+                <td class="col-8"><dh-gauge [max]="adversary.hitPoints" [(model)]="encounter.trackers[$index].hp" />
+                </td>
+            </tr>
+            <tr>
+                <td class="col-4">Stress</td>
+                <td class="col-12"><dh-gauge [max]="adversary.stress" [(model)]="encounter.trackers[$index].stress" />
+                </td>
+            </tr>
+        </table>
+        }
 
-    <p-divider />
-    }
-</p-fieldset>
-<p-card>
-    <p-buttonGroup>
+        <div class="mt-4">
 
-        <p-button severity="info" size="small" (onClick)="decSize(encounter.id)"><i class="pi pi-minus"></i></p-button>
-        <p-button severity="info" size="small" (onClick)="incSize(encounter.id)"><i class="pi pi-plus"></i>
-        </p-button>
-        <p-button severity="danger" size="small" (onClick)="remove(encounter.id)"><i class="pi pi-ban"></i></p-button>
-    </p-buttonGroup>
-</p-card>
+            <p-buttonGroup>
+
+                <p-button severity="info" size="small" (onClick)="decSize(encounter.id)"><i
+                        class="pi pi-minus"></i></p-button>
+                <p-button severity="info" size="small" (onClick)="incSize(encounter.id)"><i class="pi pi-plus"></i>
+                </p-button>
+                <p-button severity="danger" size="small" (onClick)="remove(encounter.id)"><i
+                        class="pi pi-ban"></i></p-button>
+            </p-buttonGroup>
+        </div>
+
+    </div>
+</dh-adversary>
